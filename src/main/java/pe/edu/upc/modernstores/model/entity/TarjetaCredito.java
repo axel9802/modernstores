@@ -1,16 +1,25 @@
 package pe.edu.upc.modernstores.model.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -34,9 +43,93 @@ public class TarjetaCredito {
 	@Temporal(value = TemporalType.DATE)
 	private Date expira;
 	
+	@NotBlank(message = "Por favor completar el campo tipo")
 	@Column(name = "tipo", length = 40, nullable = false)
 	private String tipo;
 	
-	/*falta id_usuario e id_comerciante*/
+	@NotNull(message = "Por favor especifique el cliente")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
 	
+	@NotNull(message = "Por favor especifique el comerciante")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "comerciante_id")
+	private Comerciante comerciante;
+	
+	@NotEmpty(message = "La lista no puede estar vacia")
+	@OneToMany(mappedBy = "tarjeta", fetch = FetchType.LAZY)
+	private List<Factura> listaFacturas;
+	
+	public TarjetaCredito() {
+		listaFacturas = new ArrayList<Factura>();
+	}
+	
+	public void addFactura(Factura factura) {
+		listaFacturas.add(factura);
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNumeroTarjeta() {
+		return numeroTarjeta;
+	}
+
+	public void setNumeroTarjeta(String numeroTarjeta) {
+		this.numeroTarjeta = numeroTarjeta;
+	}
+
+	public String getCodigoControl() {
+		return codigoControl;
+	}
+
+	public void setCodigoControl(String codigoControl) {
+		this.codigoControl = codigoControl;
+	}
+
+	public Date getExpira() {
+		return expira;
+	}
+
+	public void setExpira(Date expira) {
+		this.expira = expira;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Comerciante getComerciante() {
+		return comerciante;
+	}
+
+	public void setComerciante(Comerciante comerciante) {
+		this.comerciante = comerciante;
+	}
+
+	public List<Factura> getListaFacturas() {
+		return listaFacturas;
+	}
+
+	public void setListaFacturas(List<Factura> listaFacturas) {
+		this.listaFacturas = listaFacturas;
+	}
 }
