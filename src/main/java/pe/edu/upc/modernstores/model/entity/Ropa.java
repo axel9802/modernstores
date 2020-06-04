@@ -54,6 +54,19 @@ public class Ropa {
 	@ManyToMany(mappedBy = "listaRopas")
 	private List<Comerciante> listaComerciantes;
 	
+	@NotNull(message = "Por favor especifique el carrito")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "carrito_id")
+	private Carrito carrito;
+	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
 	public Ropa() {
 		listaCalificaciones = new ArrayList<Calificacion>();
 		listaDetalles = new ArrayList<Detalle>();

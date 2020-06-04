@@ -22,6 +22,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "tarjeta_creditos")
 public class TarjetaCredito {
@@ -41,6 +43,7 @@ public class TarjetaCredito {
 	@FutureOrPresent(message = "La fecha debe caducar obligatoriamente en una fecha futura o presente")
 	@Column(name = "expira", nullable = false)
 	@Temporal(value = TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date expira;
 	
 	@NotBlank(message = "Por favor completar el campo tipo")

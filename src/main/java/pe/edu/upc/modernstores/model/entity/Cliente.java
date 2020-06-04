@@ -10,15 +10,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "clientes")
@@ -39,6 +44,7 @@ public class Cliente {
 	@Past(message = "La fecha de nacimiento debe ser una fecha pasada obligatoriamente")
 	@Column(name = "fecha_nacimiento", nullable = false)
 	@Temporal(value = TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaNacimiento;
 	
 	@NotBlank(message = "Por favor completar el campo direccion")
@@ -66,6 +72,19 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Calificacion> listaCalificaciones;
 	
+	//@NotNull(message = "Por favor especifique el carrito")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "carrito_id")
+	private Carrito carrito;
+	
+	public Carrito getCarrito() {
+		return carrito;
+	}
+
+	public void setCarrito(Carrito carrito) {
+		this.carrito = carrito;
+	}
+
 	public Cliente() {
 		listaTarjetas = new ArrayList<TarjetaCredito>();
 		listaCalificaciones = new ArrayList<Calificacion>();

@@ -20,6 +20,8 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "suscripciones")
 public class Suscripcion {
@@ -31,6 +33,7 @@ public class Suscripcion {
 	@PastOrPresent(message = "La fecha de suscripcion debe ser pasado o presente obligatoriamente")
 	@Temporal(value = TemporalType.DATE)
 	@Column(name = "fecha_suscripcion", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaSuscripcion;
 	
 	@Positive(message = "El monto debe ser mayor a cero")

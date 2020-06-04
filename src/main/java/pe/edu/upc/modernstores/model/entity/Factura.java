@@ -19,6 +19,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.PastOrPresent;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "facturas")
 public class Factura {
@@ -30,6 +32,7 @@ public class Factura {
 	@PastOrPresent(message = "La fecha debe ser pasada o presente obligatoriamente")
 	@Temporal(value = TemporalType.DATE)
 	@Column(name = "fecha_factura", nullable = false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaFactura;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
