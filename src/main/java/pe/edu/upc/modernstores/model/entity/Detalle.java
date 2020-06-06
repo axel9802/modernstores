@@ -22,12 +22,12 @@ public class Detalle {
 	private Integer id;
 	
 	@Positive(message = "La cantidad comprada debe ser mayor a cero")
-	@NotBlank(message = "Por favor completar el campo cantidad")
+	//@NotBlank(message = "Por favor completar el campo cantidad")
 	@Column(name = "cantidad_comprada", nullable = false)
 	private int cantidadComprada;
 	
 	@Positive(message = "El monto debe ser mayor a cero")
-	@NotBlank(message = "Por favor completar el campo monto a pagar")
+	//@NotBlank(message = "Por favor completar el campo monto a pagar")
 	@Column(name = "monto_pagar", nullable = false)
 	private double montoPagar;
 	

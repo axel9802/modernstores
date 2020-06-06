@@ -5,13 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("modernstores/starter")
-public class StarterController {
+@RequestMapping("modernstores/inicio")
+public class InicioController {
 
-	@GetMapping("/inicio")
-	public String starter() {
+	@GetMapping
+	public String start() {
 		return "/inicio/inicio";
 	}
 }
-
-
