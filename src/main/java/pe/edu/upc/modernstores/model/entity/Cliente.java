@@ -71,6 +71,9 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Calificacion> listaCalificaciones;
 	
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	private List<Factura> listaFacturas;
+	
 	//@NotNull(message = "Por favor especifique el carrito")
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "carrito_id")
@@ -87,6 +90,7 @@ public class Cliente {
 	public Cliente() {
 		listaTarjetas = new ArrayList<TarjetaCredito>();
 		listaCalificaciones = new ArrayList<Calificacion>();
+		listaFacturas = new ArrayList<Factura>();
 	}
 	
 	public void addTarjeta(TarjetaCredito tarjeta) {
@@ -97,6 +101,10 @@ public class Cliente {
 		listaCalificaciones.add(calificacion);
 	}
 
+	public void addFactura(Factura factura) {
+		listaFacturas.add(factura);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -175,5 +183,13 @@ public class Cliente {
 
 	public void setListaCalificaciones(List<Calificacion> listaCalificaciones) {
 		this.listaCalificaciones = listaCalificaciones;
+	}
+
+	public List<Factura> getListaFacturas() {
+		return listaFacturas;
+	}
+
+	public void setListaFacturas(List<Factura> listaFacturas) {
+		this.listaFacturas = listaFacturas;
 	}
 }

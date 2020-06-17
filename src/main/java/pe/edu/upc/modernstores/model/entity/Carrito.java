@@ -34,17 +34,34 @@ public class Carrito {
 	@Column(name = "total", nullable = false)
 	private int total;
 	
-	@NotEmpty(message = "La lista de ropas no puede estar vacia")
+	/*@NotEmpty(message = "La lista de ropas no puede estar vacia")
 	@OneToMany(mappedBy = "carrito", fetch = FetchType.LAZY)
-	private List<Ropa> listaRopas;
+	private List<Ropa> listaRopas;*/
+	
+	/*@NotEmpty(message = "Por favor especifique la ropa")
+	@ManyToMany(mappedBy = "listaCarritos")
+	private List<Ropa> listaRopas;*/
 	
 	@OneToOne(mappedBy = "carrito")
 	private Cliente cliente;
 	
+	@NotEmpty(message = "La lista Detalle Carrito no puede estar vacia")
+	@OneToMany(mappedBy = "carrito", fetch = FetchType.LAZY)
+	private List<DetalleCarrito> listaDetalleCarrito;
+	
 	public Carrito() {
-		listaRopas = new ArrayList<Ropa>();
+		//listaRopas = new ArrayList<Ropa>();
+		listaDetalleCarrito = new ArrayList<DetalleCarrito>();
 	}
 
+	/*public void addRopa(Ropa ropa) {
+		listaRopas.add(ropa);
+	}*/
+	
+	public void addDetalleCarrito(DetalleCarrito detalleCarrito) {
+		listaDetalleCarrito.add(detalleCarrito);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -69,16 +86,25 @@ public class Carrito {
 		this.total = total;
 	}
 
-	public List<Ropa> getListaRopas() {
+	/*public List<Ropa> getListaRopas() {
 		return listaRopas;
 	}
 
 	public void setListaRopas(List<Ropa> listaRopas) {
 		this.listaRopas = listaRopas;
-	}
+	}*/
+	
 
 	public Cliente getCliente() {
 		return cliente;
+	}
+
+	public List<DetalleCarrito> getListaDetalleCarrito() {
+		return listaDetalleCarrito;
+	}
+
+	public void setListaDetalleCarrito(List<DetalleCarrito> listaDetalleCarrito) {
+		this.listaDetalleCarrito = listaDetalleCarrito;
 	}
 
 	public void setCliente(Cliente cliente) {

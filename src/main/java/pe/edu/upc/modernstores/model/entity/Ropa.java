@@ -54,29 +54,59 @@ public class Ropa {
 	@ManyToMany(mappedBy = "listaRopas")
 	private List<Comerciante> listaComerciantes;
 	
-	@NotNull(message = "Por favor especifique el carrito")
+	/*@NotNull(message = "Por favor especifique el carrito")
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "carrito_id")
-	private Carrito carrito;
+	private Carrito carrito;*/
 	
-	public Carrito getCarrito() {
+	/*public Carrito getCarrito() {
 		return carrito;
 	}
 
 	public void setCarrito(Carrito carrito) {
 		this.carrito = carrito;
-	}
+	}*/
+	
+	/*@NotEmpty(message = "Por favor especifique el Carrito")
+	@ManyToMany
+	@JoinTable(name = "ropa_carrito",
+			joinColumns = {@JoinColumn(name = "ropa_id", referencedColumnName = "id")},
+			inverseJoinColumns = {@JoinColumn(name = "carrito_id", referencedColumnName = "id")})
+	public List<Carrito> listaCarritos;*/
 
+	@NotEmpty(message = "La lista Detalle Carrito no puede estar vacia")
+	@OneToMany(mappedBy = "ropa", fetch = FetchType.LAZY)
+	private List<DetalleCarrito> listaDetalleCarrito;
+	
 	public Ropa() {
 		listaCalificaciones = new ArrayList<Calificacion>();
 		listaDetalles = new ArrayList<Detalle>();
 		listaComerciantes = new ArrayList<Comerciante>();
+		//listaCarritos = new ArrayList<Carrito>();
+		listaDetalleCarrito = new ArrayList<DetalleCarrito>();
 	}
+	
+	/*public List<Carrito> getListaCarritos() {
+		return listaCarritos;
+	}
+
+	public void setListaCarritos(List<Carrito> listaCarritos) {
+		this.listaCarritos = listaCarritos;
+	}*/
+
 	
 	public void addCalificacion(Calificacion calificacion) {
 		listaCalificaciones.add(calificacion);
 	}
 	
+	public List<DetalleCarrito> getListaDetalleCarrito() {
+		return listaDetalleCarrito;
+	}
+
+	public void setListaDetalleCarrito(List<DetalleCarrito> listaDetalleCarrito) {
+		this.listaDetalleCarrito = listaDetalleCarrito;
+	}
+
 	public void addDetalle(Detalle detalle) {
 		listaDetalles.add(detalle);
 	}
@@ -84,6 +114,13 @@ public class Ropa {
 	public void addComerciante(Comerciante comerciante) {
 		listaComerciantes.add(comerciante);
 	}
+	
+	public void addDetalleCarrito(DetalleCarrito detalleCarrito) {
+		listaDetalleCarrito.add(detalleCarrito);
+	}
+	/*public void addCarrito(Carrito carrito) {
+		listaCarritos.add(carrito);
+	}*/
 
 	public Integer getId() {
 		return id;

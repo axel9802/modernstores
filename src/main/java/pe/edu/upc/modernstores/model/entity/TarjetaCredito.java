@@ -1,8 +1,6 @@
 package pe.edu.upc.modernstores.model.entity;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -60,17 +56,17 @@ public class TarjetaCredito {
 	@JoinColumn(name = "comerciante_id")
 	private Comerciante comerciante;
 	
-	@NotEmpty(message = "La lista no puede estar vacia")
+	/*@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "tarjeta", fetch = FetchType.LAZY)
-	private List<Factura> listaFacturas;
+	private List<Factura> listaFacturas;*/
 	
 	public TarjetaCredito() {
-		listaFacturas = new ArrayList<Factura>();
+		//listaFacturas = new ArrayList<Factura>();
 	}
 	
-	public void addFactura(Factura factura) {
+	/*public void addFactura(Factura factura) {
 		listaFacturas.add(factura);
-	}
+	}*/
 
 	public Integer getId() {
 		return id;
@@ -128,11 +124,11 @@ public class TarjetaCredito {
 		this.comerciante = comerciante;
 	}
 
-	public List<Factura> getListaFacturas() {
+	/*public List<Factura> getListaFacturas() {
 		return listaFacturas;
 	}
 
 	public void setListaFacturas(List<Factura> listaFacturas) {
 		this.listaFacturas = listaFacturas;
-	}
+	}*/
 }

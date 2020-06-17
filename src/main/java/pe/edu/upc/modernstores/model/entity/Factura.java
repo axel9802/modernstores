@@ -35,9 +35,14 @@ public class Factura {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date fechaFactura;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	/*@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tarjeta_id")
-	private TarjetaCredito tarjeta;
+	private TarjetaCredito tarjeta;*/
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cliente_id")
+	private Cliente cliente;
+	
 	
 	@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "factura", fetch = FetchType.LAZY)
@@ -67,16 +72,24 @@ public class Factura {
 		this.fechaFactura = fechaFactura;
 	}
 
-	public TarjetaCredito getTarjeta() {
+	/*public TarjetaCredito getTarjeta() {
 		return tarjeta;
 	}
 
 	public void setTarjeta(TarjetaCredito tarjeta) {
 		this.tarjeta = tarjeta;
-	}
+	}*/
 
 	public List<Detalle> getListaDetalles() {
 		return listaDetalles;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
 	}
 
 	public void setListaDetalles(List<Detalle> listaDetalles) {

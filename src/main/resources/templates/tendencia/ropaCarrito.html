@@ -5,6 +5,8 @@
 <body>
 	<header th:replace="layout/layout :: header"> </header>
 
+	<header th:replace="layout/layout :: header"> </header>
+
 	<main role="main">
 	<section class="jumbotron text-left">
 		<div class="container">
@@ -52,17 +54,12 @@
 					</div>
 				</div>
 				
-
-				
-					<p class="person text-center">
-							<a th:href="@{/modernstores/tendencia/listarCompras}" class="btn btn-primary my-2">Comprar</a>
-							<a th:href="@{/modernstores/tendencia/nuevaRC}" class="btn btn-secondary my-2">Agregar a Carrito</a>
-						</p>
+				<button type="submit" class="btn btn-primary my-2">Comprar</button>
+				<button type="button" class="btn btn-secondary">Agregar a carrito</button>
 			</form>
 		</div>
 	</section>
 	</main>
-
 
 
 
