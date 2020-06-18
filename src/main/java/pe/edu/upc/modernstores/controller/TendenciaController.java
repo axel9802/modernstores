@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.modernstores.model.entity.Carrito;
 import pe.edu.upc.modernstores.model.entity.Detalle;
 import pe.edu.upc.modernstores.model.entity.Factura;
 import pe.edu.upc.modernstores.model.entity.Ropa;
-import pe.edu.upc.modernstores.service.CarritoService;
 import pe.edu.upc.modernstores.service.DetalleService;
 import pe.edu.upc.modernstores.service.FacturaService;
 import pe.edu.upc.modernstores.service.RopaService;
@@ -58,7 +56,7 @@ public class TendenciaController {
 		model.addAttribute("detalle", detalle);
 		
 		try {
-			List<Ropa> listaRopas = ropaService.readAll();
+			List<Ropa> listaRopas = ropaService.readAll();  //Aqui se muestra las listas en los check box del proceso comprar para solo elegir
 			model.addAttribute("listaRopas", listaRopas);
 			
 			List<Factura> listaFacturas = facturaService.readAll();
@@ -87,16 +85,4 @@ public class TendenciaController {
 		
 		return "/tendencia/listaCompras";
 	}
-	
-	
-	
-	
-	
-	
-	@GetMapping("/nuevaRC")
-	public String RopaCarrito() {
-		return "/tendencia/ropaCarrito";
-	}
-	
-
 }
