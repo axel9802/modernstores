@@ -9,7 +9,7 @@
 	<section class="jumbotron text-left">
 		<div class="container">
 		
-			<form th:action="@{/modernstores/tendencia/comprar}" th:object="${detalle}" >
+			<form th:action="@{/modernstores/tendencia/comprar}" th:object="${detalle}" method="post">
 				<div class="form-row">
 					<div class="form-group col-md-4">
 						<label for="ropa">Ropa</label> 
@@ -55,7 +55,7 @@
 
 				
 					<p class="person text-center">
-							<a th:href="@{/modernstores/tendencia/listarCompras}" class="btn btn-primary my-2">Comprar</a>
+						 <button type="submit" class="btn btn-primary my-2">Comprar</button>
 							<a th:href="@{/modernstores/tendencia/nuevaRC}" class="btn btn-secondary my-2">Agregar a Carrito</a>
 						</p>
 			</form>

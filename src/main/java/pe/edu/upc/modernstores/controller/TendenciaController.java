@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -33,9 +34,6 @@ public class TendenciaController {
 	
 	@Autowired
 	private FacturaService facturaService;
-	
-	@Autowired
-	private CarritoService carritoService;
 	
 	@GetMapping
 	public String start() {
@@ -74,12 +72,14 @@ public class TendenciaController {
 		return "/tendencia/nuevo";
 	}
 	
-	@GetMapping("/comprar")
+	@PostMapping("/comprar")
 	public String NuevaCompra(@ModelAttribute("detalle") Detalle detalle, Model model, SessionStatus status) {
 		
 		try {
 			detalleService.create(detalle);
 			status.setComplete();
+			List<Detalle> listaDetalles = detalleService.readAll();
+			model.addAttribute("listaDetalles", listaDetalles);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
