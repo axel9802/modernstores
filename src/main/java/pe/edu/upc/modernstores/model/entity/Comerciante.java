@@ -34,8 +34,8 @@ public class Comerciante {
 	private String usuario;
 	
 	@NotBlank(message = "Por favor completar el campo contraseña")
-	@Column(name = "contraseña", length = 40, nullable = false)
-	private String contraseña;
+	@Column(name = "password", length = 40, nullable = false)
+	private String password;
 	
 	@NotBlank(message = "Por favor completar el campo celular")
 	@Column(unique = true, name = "celular", nullable = false)
@@ -59,7 +59,7 @@ public class Comerciante {
 	@Column(unique = true, name = "dni", nullable = false)
 	private String dni;
 	
-	@NotEmpty(message = "La lista no puede estar vacia")
+	//@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "comerciante", fetch = FetchType.LAZY)
 	private List<TarjetaCredito> listaTarjetas;
 	
@@ -68,7 +68,7 @@ public class Comerciante {
 	@JoinColumn(name = "suscripcion_id")
 	private Suscripcion suscripcion;
 	
-	@NotEmpty(message = "Por favor especifique la ropa")
+	//@NotEmpty(message = "Por favor especifique la ropa")
 	@ManyToMany
 	@JoinTable(name = "comerciante_ropa",
 			joinColumns = {@JoinColumn(name = "comerciante_id", referencedColumnName = "id")},
@@ -104,12 +104,12 @@ public class Comerciante {
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password= password;
 	}
 
 	public String getCelular() {

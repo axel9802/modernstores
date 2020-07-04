@@ -40,12 +40,12 @@ public class Suscripcion {
 	@Column(name = "monto", nullable = false)
 	private double monto;
 	
-	@Size(min = 7, max = 7)
+	//@Size(min = 7, max = 7)
 	@NotBlank(message = "Por favor completar el campo nombre")
 	@Column(name = "nombre", length = 20, nullable = false)
 	private String nombre;
 	
-	@NotEmpty(message = "La lista no puede estar vacia")
+	//@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "suscripcion", fetch = FetchType.LAZY)
 	private List<Comerciante> listaComerciantes;
 	

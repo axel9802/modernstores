@@ -19,6 +19,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -60,16 +61,17 @@ public class Cliente {
 	private String usuario;
 	
 	@Size(min = 5, message = "La contraseña debe tener como minimo 5 caracteres")
-	@Column(name = "contraseña", length = 20, nullable = false)
-	private String contraseña;
+	@Column(name = "password", length = 20, nullable = false)
+	private String password;
 	
-	@NotEmpty(message = "La lista no puede estar vacia")
+	//@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<TarjetaCredito> listaTarjetas;
 	
-	@NotEmpty(message = "La lista no puede estar vacia")
+	//@NotEmpty(message = "La lista no puede estar vacia")
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Calificacion> listaCalificaciones;
+	
 	
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Factura> listaFacturas;
@@ -161,12 +163,12 @@ public class Cliente {
 		this.usuario = usuario;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public List<TarjetaCredito> getListaTarjetas() {

@@ -24,7 +24,7 @@
 					
 					
 					<div class="form-group col-md-4">
-						<label for="factura">Tipo Factura</label> 
+						<label for="factura">Comprobante de Pago</label> 
 						<select th:field="*{factura}" class="form-control">
 							<option value="">Choose id...</option>
 							<option th:each="factura : ${listaFacturas}" th:value="${factura.id}"

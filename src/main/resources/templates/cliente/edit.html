@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
+<head th:replace="layout/layout::head">
 </head>
 <body>
-	<header th:replace="layout/layout :: header"> </header>
-
+	<header th:replace="layout/layout::header"></header>
 	<main role="main">
-	<section class="jumbotron text-center">
-		<div class="container">
-						<div class="card text-center">
-				<div class="card-header">Nuevo Cliente</div>
+		<section class="container">
+			<div class="card text-center">
+				<div class="card-header">Editar Clientes</div>
 				<div class="card-body text-left">
 
 					<form th:action="@{/modernstores/clientes/save}" th:object="${cliente}"
@@ -52,7 +50,7 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="password">Password</label> <input type="password"
+								<label for="password">Password</label> <input type="text"
 									class="form-control" th:field="*{password}"
 									placeholder="ingrese su password">
 							</div>
@@ -70,13 +68,9 @@
 				<div class="card-footer text-center"></div>
 			</div>
 
-			
-		</div>
-	</section>
+		</section>
 	</main>
 
-
-
-	<footer th:replace="layout/layout :: footer"> </footer>
+	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

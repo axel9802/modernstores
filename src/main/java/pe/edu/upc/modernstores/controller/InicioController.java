@@ -12,4 +12,13 @@ public class InicioController {
 	public String start() {
 		return "/inicio/inicio";
 	}
+	@GetMapping("login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("access-denied")
+	public String accessDenied() {
+		return "access-denied";
+	}
 }

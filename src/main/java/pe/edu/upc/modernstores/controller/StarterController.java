@@ -12,6 +12,15 @@ public class StarterController {
 	public String starter() {
 		return "/inicio/inicio";
 	}
+	@GetMapping("login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("access-denied")
+	public String accessDenied() {
+		return "access-denied";
+	}
 }
 
 

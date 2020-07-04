@@ -14,73 +14,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pe.edu.upc.modernstores.model.entity.Cliente;
-import pe.edu.upc.modernstores.service.ClienteService;
-
+import pe.edu.upc.modernstores.model.entity.Suscripcion;
+import pe.edu.upc.modernstores.service.SuscripcionService;
 
 @Controller
-@RequestMapping("modernstores/clientes")
-@SessionAttributes("cliente")
-public class ClienteController {
+@RequestMapping("modernstores/suscripciones")
+@SessionAttributes("suscripcion")
+public class SuscripcionController {
 	@Autowired
-	private ClienteService clienteService;
+	private SuscripcionService suscripcionService;
 	
 	@GetMapping
 	public String start(Model model) {
 		try {
-			List<Cliente> clientes=clienteService.readAll();
-			model.addAttribute("clientes", clientes);
+			List<Suscripcion> suscripciones=suscripcionService.readAll();
+			model.addAttribute("suscripciones", suscripciones);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "/cliente/listall";
+		return "/suscripcion/listall";
 	}
 	@GetMapping("/new")
 	public String nuevo(Model model) {
-		Cliente cliente=new Cliente();
-		model.addAttribute("cliente",cliente);
-		return "/cliente/nuevo";
+		Suscripcion suscripcion=new Suscripcion();
+		model.addAttribute("suscripcion",suscripcion);
+		return "/suscripcion/nuevo";
 	}
 	@PostMapping("/save")
-	public String save(@ModelAttribute("cliente")Cliente cliente, Model model,SessionStatus status) {
+	public String save(@ModelAttribute("suscripcion")Suscripcion suscripcion, Model model,SessionStatus status) {
 		try {
-			clienteService.create(cliente);
+			suscripcionService.create(suscripcion);
 			status.setComplete();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return "redirect:/modernstores/clientes";
+		return "redirect:/modernstores/suscripciones";
 	}
-	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Integer id,Model model) {
-		try {
-			Optional<Cliente> optional=clienteService.findById(id);
-			if(optional.isPresent()) {
-				model.addAttribute("cliente", optional.get());
-			}else {
-				return "redirect:/modernstores/clientes";
-			}
-				
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return "/cliente/edit";
-	}
+	
 	@GetMapping("/del/{id}")
 	public String delete(@PathVariable("id") Integer id,Model model) {
 		try {
-			Optional<Cliente> optional=clienteService.findById(id);
+			Optional<Suscripcion> optional=suscripcionService.findById(id);
 			if(optional.isPresent()) {
-				clienteService.deleteById(id);
+				suscripcionService.deleteById(id);
 			}else {
-				return "redirect:/modernstores/clientes";
+				return "redirect:/modernstores/suscripciones";
 			}
 				
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "redirect:/modernstores/clientes";
+		return "redirect:/modernstores/suscripciones";
 	}
-	
 }

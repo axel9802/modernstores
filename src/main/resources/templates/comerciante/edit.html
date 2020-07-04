@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/layout :: head">
+<head th:replace="layout/layout::head">
 </head>
 <body>
-	<header th:replace="layout/layout :: header"> </header>
-
+	<header th:replace="layout/layout::header"></header>
 	<main role="main">
-	<section class="jumbotron text-center">
-		<div class="container">
-						<div class="card text-center">
-				<div class="card-header">Nuevo Cliente</div>
+		<section class="container">
+			<div class="card text-center">
+				<div class="card-header">Editar Comerciante</div>
 				<div class="card-body text-left">
 
-					<form th:action="@{/modernstores/clientes/save}" th:object="${cliente}"
+					<form th:action="@{/modernstores/comerciantes/save}" th:object="${comerciante}"
 						method="post">
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -28,14 +26,14 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="direccion">Direccion</label> <input type="text"
-									class="form-control" th:field="*{direccion}"
-									placeholder="ingrese su direccion">
+								<label for="dni">DNI</label> <input type="text"
+									class="form-control" th:field="*{dni}"
+									placeholder="ingrese su dni">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="fechaNacimiento">Fecha de nacimiento</label> <input type="date"
-									class="form-control" th:field="*{fechaNacimiento}"
-									placeholder="ingrese su fecha de nacimiento">
+								<label for="celular">Celular</label> <input type="text"
+									class="form-control" th:field="*{celular}"
+									placeholder="ingrese su celular">
 							</div>
 						</div>
 						<div class="form-row">
@@ -52,16 +50,28 @@
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="password">Password</label> <input type="password"
+								<label for="password">Password</label> <input type="text"
 									class="form-control" th:field="*{password}"
 									placeholder="ingrese su password">
 							</div>
+							<div class="form-group col-md-6">
+								<label for="suscripcion">Suscripcion</label> 
+								
+								 <select th:field="*{suscripcion}" class="form-control">
+				      	<option value="" >Seleccione Suscripcion</option>
+				      	<option th:each="suscripcion : ${suscripciones}" 
+				      		th:value="${suscripcion.id}" 
+				      		th:text="${suscripcion.nombre + ' - ' + suscripcion.monto}" ></option>
+				      </select>
+								
+							</div>
+							
 						</div>
 
 						<button type="submit" class="btn btn-success">
 							<i class="fas fa-save"></i> Grabar
 						</button>
-						<a th:href="@{/modernstores/clientes}" class="btn btn-danger"><i
+						<a th:href="@{/modernstores/comerciantes}" class="btn btn-danger"><i
 							class="fas fa-ban"></i> Cancelar </a>
 					</form>
 
@@ -70,13 +80,13 @@
 				<div class="card-footer text-center"></div>
 			</div>
 
-			
-		</div>
-	</section>
+
+
+
+
+		</section>
 	</main>
 
-
-
-	<footer th:replace="layout/layout :: footer"> </footer>
+	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

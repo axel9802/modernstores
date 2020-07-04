@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="head">
 <meta charset="utf-8">
 <meta name="viewport"
@@ -29,21 +30,32 @@
 			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
 
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					<li class="nav-item active"><a class="nav-link" th:href="@{/modernstores/tendencia}">Tendencias
+					<li sec:authorize="hasRole('ROLE_CLIENTE')" class="nav-item active"><a class="nav-link" th:href="@{/modernstores/tendencia}">Tendencias
 							<span class="sr-only">(current)</span>
 					</a></li>
 
-					<li class="nav-item active"><a class="nav-link" href="#">Clientes
-					</a></li>
+					 <li sec:authorize="hasAnyRole('ROLE_CLIENTE', 'ROLE_ADMINISTRADOR')" class="nav-item active"><a class="nav-link" th:href="@{/modernstores/clientes}">Clientes
+		             </a></li>
 
-					<li class="nav-item active"><a class="nav-link" href="#">Comerciantes
+					<li sec:authorize="hasAnyRole('ROLE_COMERCIANTE', 'ROLE_ADMINISTRADOR')" class="nav-item active"><a class="nav-link" th:href="@{/modernstores/comerciantes}">Comerciantes
 					</a></li>
 					
-					<li class="nav-item active"><a class="nav-link" th:href="@{/modernstores/tendencia/listarCompras}">Mis Compras
+					<li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"  class="nav-item active"><a class="nav-link" th:href="@{/modernstores/suscripciones}">Suscripciones
 					</a></li>
 					
-					<li class="nav-item active"><a class="nav-link" th:href="@{/modernstores/ropacarrito/listarRopaCarrito}">Mi Carrito
+					<li sec:authorize="hasAnyRole('ROLE_CLIENTE','ROLE_COMERCIANTE')" class="nav-item active"><a class="nav-link" th:href="@{/modernstores/tendencia/listarCompras}">Mis Compras
 					</a></li>
+					
+					<li sec:authorize="hasRole('ROLE_CLIENTE')" class="nav-item active"><a class="nav-link" th:href="@{/modernstores/ropacarrito/listarRopaCarrito}">Mi Carrito
+					</a></li>
+					
+					<li  sec:authorize="isAnonymous()"  class="nav-item">
+			     <a class="btn btn-success"th:href="@{/modernstores/inicio/login}" aria-disabled="true"><i class="fas fa-sign-out-alt"></i>Iniciar Sesión</a>
+		      </li>
+		      
+		      <li sec:authorize="isAuthenticated()" class="nav-item">
+		        <a class="btn btn-danger" th:href="@{/logout}" aria-disabled="true"><i class="fas fa-power-off"></i>: <span sec:authentication="name">Username</span></a>
+		      </li>
 
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
