@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container">
+		<div class="card border-danger mt-5">
+			<div class="card-header text-danger">
+				<h5>ACCESO DENEGADO</h5>
+			</div>
+			<div class="card-body text-danger">
+				<h5 class="card-title">ACCESO DENEGADO AL RECURSO!!!</h5>
+				<p class="card-text">No tiene permiso.</p>
+				<p class="card-text">Usted esta tratando de acceder a un recurso protegido</p>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
