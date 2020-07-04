@@ -46,7 +46,7 @@ public class RegistroController {
 		return "/usuario/register";
 	}
 	@PostMapping("/save")
-	public String save(@Valid Usuario usuario, BindingResult result, Model model,SessionStatus status) {
+	public String save(@ModelAttribute("usuario") @Valid Usuario usuario, BindingResult result, Model model,SessionStatus status) {
 		
 		if (result.hasFieldErrors()) {
 			return "/usuario/register";
